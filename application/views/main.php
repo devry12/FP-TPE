@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,9 +26,13 @@
         <!-- Links -->
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/cart">
               <i class="fas fa-shopping-cart">
-                <span class="badge badge-danger">4</span></i>
+                <span class="badge badge-danger"><?php if ($this->cart->contents() == null): ?>
+                    0
+                <?php else: ?>
+                    <?php echo count($this->cart->contents()) ?>
+                <?php endif; ?></span></i>
             </a>
           </li>
 
@@ -36,7 +41,6 @@
       </div>
       <!-- Collapsible content -->
     </nav>
-
     <!-- Section: Products v.3 -->
     <section class="text-center my-5">
       <div class="container">
@@ -55,7 +59,7 @@
         <!-- Grid row -->
         <div class="row">
             <?php foreach ($menu as $item): ?>
-              
+
           <!-- Grid column -->
           <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
             <!-- Card -->
@@ -84,6 +88,19 @@
                 <h4 class="font-weight-bold blue-text">
                   <strong>Rp.<?=$item->price?></strong>
                 </h4>
+                <form method="post" action="/FrontController/addtocart">
+                    <input type="text" name="id" value="<?=$item->idMenu?>" hidden>
+                    <input type="text" name="name" value="<?=$item->nameMenu?>" hidden>
+                    <input type="text" name="price" value="<?=$item->price?>" hidden>
+                    <div class="row">
+                      <div class="col-6">
+                        <input style="width:100px;" type="number" name="qty" value="1">
+                      </div>
+                      <div class="col-6">
+                        <button type="submit" class="btn btn-sm btn-primary">Add</button>
+                      </div>
+              </div>
+              </form>
               </div>
               <!-- Card content -->
             </div>
