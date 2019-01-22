@@ -7,6 +7,9 @@ public function __construct()
 {
 	parent::__construct();
 	$this->load->model('MenuModel');
+	if (!isset($_SESSION['idMeja'])) {
+		redirect('/');
+	}
 }
 
 	public function index()
@@ -42,5 +45,9 @@ $this->cart->update($data);
 	public function cart()
 	{
 		$this->load->view('cart');
+	}
+	public function pesan($totalharga)
+	{
+		$this->MenuModel->pesan($totalharga);
 	}
 }

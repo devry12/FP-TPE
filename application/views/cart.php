@@ -9,11 +9,26 @@
     <link rel="stylesheet" href="assets/mdb/css/bootstrap.css">
     <link rel="stylesheet" href="assets/mdb/css/style.css">
     <link rel="stylesheet" href="assets/mdb/css/mdb.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
   </head>
   <body>
-
+      <?php 		if ($this->cart->contents() == null) { ?>
+          <script type="text/javascript">
+          Swal.fire({
+            title: 'Oops...',
+            text: "keranjang anda masih kosong, silahkan pilih beberapa menu",
+            type: 'error',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ok!'
+          }).then((result) => {
+                 window.location.href = '/';
+          })
+                      </script>
+      <?php } ?>
     <div class="container">
-      <?php print_r($this->cart->contents())?>
     	<h1>Cart</h1><hr>
     	<table class="table table-striped table-hover table-bordered">
             <tbody>
@@ -35,7 +50,7 @@
               <?php $totalharga = $totalharga + $item['subtotal']; endforeach; ?>
                 <tr>
                     <td><a href="/" class="btn btn-primary">Continue Shopping</a></td>
-                    <td colspan="2"><a href="#" class="pull-right btn btn-success">Checkout</a></td>
+                    <td colspan="2"><a href="/pesan/<?=$totalharga?>" class="pull-right btn btn-success">Pesan</a></td>
                     <td><?=rupiah($totalharga)?></td>
                 </tr>
             </tbody>

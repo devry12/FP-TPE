@@ -63,9 +63,9 @@
           <!-- Grid column -->
           <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
             <!-- Card -->
-            <div class="card align-items-center h-100">
+            <div class="card align-items-center">
               <!-- Card image -->
-              <div class="view overlay h-100">
+              <div class="view overlay">
                 <img src="<?=base_url()?>assets/image/menu/<?=$item->image?>" class="card-img-top" alt="">
                 <a>
                   <div class="mask rgba-white-slight"></div>
@@ -81,7 +81,9 @@
                 <h5>
                   <strong>
                     <a href="" class="dark-grey-text"><?=$item->Category?>
-                      <span class="badge badge-pill danger-color">NEW</span>
+                      <?php if ($item->new == 1): ?>
+                        <span class="badge badge-pill danger-color">NEW</span>
+                      <?php endif; ?>
                     </a>
                   </strong>
                 </h5>
@@ -158,6 +160,8 @@
     <script src="./assets/mdb/js/popper.min.js" charset="utf-8"></script>
     <script src="./assets/mdb/js/bootstrap.js" charset="utf-8"></script>
     <script src="./assets/mdb/js/mdb.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 
   </body>
 </html>
